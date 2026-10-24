@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f6efdf">
+<title>For Songbird ♡</title>
+
+<style>
+:root {
+  --cream: #f6efdf;
+  --gold: #bd9856;
+  --brown: #49382b;
+  --wine: #743d3a;
+  --muted: #89765f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--brown);
+  font-family: Georgia, "Times New Roman", serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 12px;
+  border: 1px solid rgba(189,152,86,.4);
+  pointer-events: none;
+  z-index: 10;
+}
+
+button {
+  font: inherit;
+}
+
+.hero {
+  min-height: 100svh;
+  padding: 65px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 40%,
+    rgba(218,181,112,.2), transparent 60%);
+}
+
+.eyebrow {
+  font: 10px Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--wine);
+  margin-bottom: 28px;
+}
+
+.sun {
+  width: 75px;
+  height: 75px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  font-size: 30px;
+  margin-bottom: 28px;
+  box-shadow: 0 0 0 8px rgba(189,152,86,.08);
+}
+
+h1 {
+  font-size: clamp(60px, 14vw, 105px);
+  line-height: .95;
+  font-weight: 400;
+  letter-spacing: -4px;
+  margin: 0;
+}
+
+h1 em {
+  color: var(--wine);
+  font-weight: 400;
+}
+
+.subtitle {
+  max-width: 360px;
+  line-height: 1.9;
+  font-size: 17px;
+  color: var(--muted);
+  margin: 28px auto;
+}
+
+.date {
+  padding: 13px 18px;
+  border-top: 1px solid rgba(189,152,86,.4);
+  border-bottom: 1px solid rgba(189,152,86,.4);
+  font: 10px Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--wine);
+  margin-bottom: 30px;
+}
+
+.btn {
+  background: var(--wine);
+  color: white;
+  border: none;
+  padding: 16px 24px;
+  cursor: pointer;
+  font: 10px Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: .3s;
+}
+
+.btn:hover {
+  background: #552b29;
+  transform: translateY(-2px);
+}
+
+.scroll {
+  margin-top: 40px;
+  font: 9px Arial, sans-serif;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+section:not(.hero) {
+  padding: 85px 24px;
+}
+
+.letter-section {
+  background: rgba(255,252,244,.65);
+  border-top: 1px solid rgba(189,152,86,.2);
+  border-bottom: 1px solid rgba(189,152,86,.2);
+}
+
+.container {
+  max-width: 650px;
+  margin: auto;
+}
+
+.kicker {
+  text-align: center;
+  font: 10px Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: clamp(35px, 8vw, 55px);
+  line-height: 1.1;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: -1.5px;
+  margin: 0 0 35px;
+}
+
+.letter {
+  max-width: 520px;
+  margin: auto;
+  text-align: center;
+  font-size: 18px;
+  line-height: 2;
+}
+
+.letter p {
+  margin-bottom: 22px;
+}
+
+.signature {
+  color: var(--wine);
+  font-style: italic;
+}
+
+.heart {
+  color: var(--wine);
+  display: inline-block;
+  animation: heartbeat 1.7s infinite;
+}
+
+@keyframes heartbeat {
+  50% { transform: scale(1.2); }
+}
+
+.poem-card {
+  max-width: 600px;
+  margin: auto;
+  padding: clamp(25px, 7vw, 55px);
+  border: 1px solid rgba(189,152,86,.4);
+  background: rgba(255,252,244,.55);
+  box-shadow: 0 15px 55px rgba(75,51,27,.06);
+}
+
+.poem-title {
+  font-size: clamp(42px, 9vw, 65px);
+  font-style: italic;
+  color: var(--wine);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.poem-subtitle {
+  text-align: center;
+  font: 9px Arial, sans-serif;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 35px;
+}
+
+.poem {
+  font-size: 16px;
+  line-height: 2;
+  text-align: center;
+}
+
+.stanza {
+  margin-bottom: 30px;
+}
+
+.rule {
+  height: 1px;
+  width: 45px;
+  background: var(--gold);
+  margin: 35px auto;
+}
+
+.closing {
+  color: var(--wine);
+  text-align: center;
+  font-size: 22px;
+  font-style: italic;
+  line-height: 1.8;
+}
+
+.countdown-section {
+  text-align: center;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 28px auto;
+}
+
+.timebox {
+  width: 76px;
+  padding: 15px 5px;
+  border: 1px solid rgba(189,152,86,.35);
+  background: rgba(255,252,244,.5);
+}
+
+.timebox strong {
+  display: block;
+  font-size: 29px;
+  font-weight: 400;
+  color: var(--wine);
+}
+
+.timebox span {
+  display: block;
+  font: 8px Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+#birthdayMessage {
+  color: var(--wine);
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.8;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 15px 50px;
+  font: 9px Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+
+.leaf {
+  position: fixed;
+  top: -30px;
+  z-index: 5;
+  pointer-events: none;
+  color: var(--gold);
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translate(35px, 110vh) rotate(400deg);
+    opacity: 0;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .8s, transform .8s;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 390px) {
+  .countdown {
+    gap: 6px;
+  }
+
+  .timebox {
+    width: 66px;
+  }
+
+  .timebox strong {
+    font-size: 25px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- OPENING -->
+<section class="hero">
+  <div class="eyebrow">A little something, before your day</div>
+
+  <div class="sun">✳</div>
+
+  <h1>For my<br><em>Songbird.</em></h1>
+
+  <p class="subtitle">
+    Your birthday hasn't arrived yet,
+    but some things are worth celebrating
+    before their time.
+  </p>
+
+  <div class="date">28 October 2026 · A day made for you</div>
+
+  <button class="btn" onclick="openLetter()">
+    Open your little surprise ♡
+  </button>
+
+  <div class="scroll">A small love note, just for you ↓</div>
+</section>
+
+
+<!-- PERSONAL LETTER -->
+<section class="letter-section" id="letter">
+  <div class="container reveal">
+
+    <div class="kicker">A note for you</div>
+
+    <h2>Before your day arrives…</h2>
+
+    <div class="letter">
+
+      <p>
+        Your birthday hasn't arrived yet,
+        but some things are worth celebrating
+        before their time.
+      </p>
+
+      <p>
+        So, consider this a little piece of my heart,
+        offered in advance, for someone whose presence
+        makes the passing of time feel a little more beautiful.
+      </p>
+
+      <p>
+        For you, my love. <span class="heart">♥</span>
+      </p>
+
+      <p class="signature">-- With love, always.</p>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- THE POEM -->
+<section id="poem">
+  <div class="container reveal">
+
+    <div class="kicker">A little piece of my heart</div>
+
+    <div class="poem-card">
+
+      <div class="poem-title">Autumn's Lore</div>
+
+      <div class="poem-subtitle">
+        For Songbird · In advance, with love
+      </div>
+
+      <div class="poem">
+
+        <div class="stanza">
+          And to think you're simply a memory,<br>
+          I dissent,<br>
+          for you are autumn's lore;<br>
+          the season that visits me<br>
+          when plains turn gold,<br>
+          and the sun's rays glaze<br>
+          everything in warmth<br>
+          like honey,<br>
+          while the sweet scents of fruit<br>
+          rise from the trees.
+        </div>
+
+        <div class="stanza">
+          Your presence reminds me<br>
+          of all that ages<br>
+          yet retains its golden glow,<br>
+          of things that fade with time<br>
+          but remain worth holding on to,<br>
+          fleeting, yet precious,<br>
+          until the final moment<br>
+          I can hold you.
+        </div>
+
+      </div>
+
+      <div class="rule"></div>
+
+      <div class="closing">
+        Some things are fleeting,<br>
+        yet precious enough to hold on to.
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- BIRTHDAY COUNTDOWN -->
+<section class="countdown-section reveal" id="countdown">
+
+  <div class="kicker">The day is almost here</div>
+
+  <h2>Counting down to you.</h2>
+
+  <p style="color:var(--muted);font-size:13px;">
+    Until 28 October
+  </p>
+
+  <div class="countdown">
+
+    <div class="timebox">
+      <strong id="days">--</strong>
+      <span>Days</span>
+    </div>
+
+    <div class="timebox">
+      <strong id="hours">--</strong>
+      <span>Hours</span>
+    </div>
+
+    <div class="timebox">
+      <strong id="minutes">--</strong>
+      <span>Minutes</span>
+    </div>
+
+    <div class="timebox">
+      <strong id="seconds">--</strong>
+      <span>Seconds</span>
+    </div>
+
+  </div>
+
+  <div id="birthdayMessage">
+    Until then, this little page is yours. ♡
+  </div>
+
+</section>
+
+<footer>
+  From my heart to yours, Kwabby-Songbird <span class="heart">♥</span>
+</footer>
+
+
+<script>
+function openLetter() {
+  document.getElementById("letter").scrollIntoView({
+    behavior: "smooth"
+  });
+
+  document.querySelector("#letter .reveal")
+    .classList.add("visible");
+}
+
+// Reveal sections gently as they enter the screen.
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(".reveal").forEach(element => {
+    observer.observe(element);
+  });
+} else {
+  document.querySelectorAll(".reveal").forEach(element => {
+    element.classList.add("visible");
+  });
+}
+
+// Gentle falling golden autumn leaves.
+function createLeaf() {
+  const leaf = document.createElement("span");
+  leaf.className = "leaf";
+
+  const symbols = ["✦", "❧", "✳", "·"];
+  leaf.textContent =
+    symbols[Math.floor(Math.random() * symbols.length)];
+
+  leaf.style.left = Math.random() * 100 + "vw";
+  leaf.style.fontSize = (10 + Math.random() * 15) + "px";
+  leaf.style.opacity = 0.25 + Math.random() * 0.4;
+  leaf.style.animationDuration = (12 + Math.random() * 12) + "s";
+
+  document.body.appendChild(leaf);
+
+  setTimeout(() => leaf.remove(), 25000);
+}
+
+for (let i = 0; i < 8; i++) {
+  setTimeout(createLeaf, i * 1200);
+}
+
+setInterval(createLeaf, 2400);
+
+
+// Birthday countdown: Ghana time (UTC).
+function updateCountdown() {
+  const birthday = new Date("2026-10-28T00:00:00Z").getTime();
+  const now = Date.now();
+  const remaining = birthday - now;
+
+  const message = document.getElementById("birthdayMessage");
+
+  if (remaining <= 0) {
+    document.getElementById("days").textContent = "00";
+    document.getElementById("hours").textContent = "00";
+    document.getElementById("minutes").textContent = "00";
+    document.getElementById("seconds").textContent = "00";
+
+    message.textContent =
+      "It's your day, my love. Happy Birthday, Songbird! ♥";
+
+    return;
+  }
+
+  const days = Math.floor(remaining / 86400000);
+  const hours = Math.floor((remaining % 86400000) / 3600000);
+  const minutes = Math.floor((remaining % 3600000) / 60000);
+  const seconds = Math.floor((remaining % 60000) / 1000);
+
+  document.getElementById("days").textContent =
+    String(days).padStart(2, "0");
+
+  document.getElementById("hours").textContent =
+    String(hours).padStart(2, "0");
+
+  document.getElementById("minutes").textContent =
+    String(minutes).padStart(2, "0");
+
+  document.getElementById("seconds").textContent =
+    String(seconds).padStart(2, "0");
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
