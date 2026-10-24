@@ -1,868 +1,1272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#211811">
-
-<title>For My Songbird ♡</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500&family=Parisienne&display=swap" rel="stylesheet">
-
-<style>
-:root {
-  --cream: #f8f1e5;
-  --paper: #fffaf1;
-  --gold: #c5a166;
-  --gold-light: #e5cd9c;
-  --wine: #743641;
-  --espresso: #241912;
-  --brown: #493529;
-  --muted: #a89a87;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--cream);
-  color: var(--brown);
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
-  overflow-x: hidden;
-}
-
-::selection {
-  background: var(--gold);
-  color: white;
-}
-
-/* ATMOSPHERE */
-
-.grain {
-  position: fixed;
-  inset: 0;
-  z-index: 20;
-  pointer-events: none;
-  opacity: .12;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.15'/%3E%3C/svg%3E");
-}
-
-.leaves {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 15;
-}
-
-.leaf {
-  position: absolute;
-  top: -40px;
-  color: #d5ad67;
-  opacity: 0;
-  animation: falling linear infinite;
-}
-
-@keyframes falling {
-  0% {
-    transform: translate3d(0,-5vh,0) rotate(0deg);
-    opacity: 0;
-  }
-  12% { opacity: .48; }
-  85% { opacity: .28; }
-  100% {
-    transform: translate3d(70px,110vh,0) rotate(300deg);
-    opacity: 0;
-  }
-}
-
-/* HERO */
-
-.hero {
-  min-height: 100svh;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 80px 24px;
-  color: var(--cream);
-  background: #30271d;
-  isolation: isolate;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background-image:
-    url("https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=2000&q=90");
-  background-size: cover;
-  background-position: center;
-  transform: scale(1.04);
-  animation: landscapeReveal 2s ease-out both;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(180deg,
-      rgba(25,19,13,.32) 0%,
-      rgba(30,22,15,.45) 42%,
-      rgba(24,17,12,.86) 100%),
-    radial-gradient(ellipse at 50% 40%,
-      rgba(216,174,98,.17),
-      transparent 65%);
-}
-
-@keyframes landscapeReveal {
-  from { transform: scale(1.12); }
-  to { transform: scale(1.04); }
-}
-
-.hero-content {
-  max-width: 760px;
-  animation: entrance 1.5s ease both;
-}
-
-@keyframes entrance {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.eyebrow {
-  color: var(--gold-light);
-  font-size: 9px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  margin-bottom: 34px;
-}
-
-.hero h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(65px, 13vw, 120px);
-  line-height: .83;
-  font-weight: 300;
-  letter-spacing: -3px;
-}
-
-.hero h1 span {
-  display: block;
-  color: #e4c58c;
-  font-style: italic;
-  font-weight: 400;
-  margin-top: 14px;
-}
-
-.hero-rule {
-  width: 65px;
-  height: 1px;
-  margin: 36px auto 25px;
-  background: var(--gold-light);
-}
-
-.hero-description {
-  max-width: 340px;
-  margin: 0 auto 38px;
-  font-size: 12px;
-  line-height: 2.1;
-  letter-spacing: .4px;
-  color: rgba(255,250,241,.83);
-}
-
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 13px;
-  padding: 16px 24px;
-  border: 1px solid rgba(229,205,156,.8);
-  color: var(--cream);
-  background: rgba(255,255,255,.035);
-  text-decoration: none;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  transition: background .35s, color .35s, transform .35s;
-  backdrop-filter: blur(6px);
-}
-
-.button:hover {
-  background: var(--gold-light);
-  color: var(--espresso);
-  transform: translateY(-3px);
-}
-
-.hero-bottom {
-  position: absolute;
-  bottom: 32px;
-  left: 0;
-  right: 0;
-  font-size: 9px;
-  letter-spacing: 3px;
-  color: rgba(255,250,241,.65);
-  text-transform: uppercase;
-}
-
-.hero-bottom span {
-  display: block;
-  margin-top: 10px;
-  font-size: 16px;
-  color: var(--gold-light);
-}
-
-/* SECTION BASICS */
-
-section {
-  padding: 110px 25px;
-  position: relative;
-}
-
-.section-inner {
-  width: 100%;
-  max-width: 760px;
-  margin: auto;
-}
-
-.section-label {
-  text-align: center;
-  color: var(--gold);
-  font-size: 9px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  margin-bottom: 25px;
-}
-
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  text-align: center;
-  font-size: clamp(43px, 9vw, 68px);
-  line-height: 1;
-  font-weight: 400;
-  letter-spacing: -1px;
-  margin-bottom: 32px;
-}
-
-.ornament {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  margin: 32px auto;
-  color: var(--gold);
-}
-
-.ornament::before,
-.ornament::after {
-  content: "";
-  height: 1px;
-  width: 45px;
-  background: var(--gold);
-  opacity: .6;
-}
-
-/* LETTER */
-
-.note-section {
-  background:
-    radial-gradient(ellipse at 50% 0%,
-      rgba(197,161,102,.14), transparent 60%),
-    var(--cream);
-}
-
-.letter-card {
-  max-width: 600px;
-  margin: auto;
-  padding: clamp(30px, 7vw, 65px);
-  position: relative;
-  background: var(--paper);
-  border: 1px solid rgba(197,161,102,.45);
-  box-shadow:
-    0 25px 80px rgba(73,53,41,.08),
-    inset 0 0 0 6px rgba(197,161,102,.055);
-}
-
-.letter-card::before,
-.letter-card::after {
-  content: "✦";
-  position: absolute;
-  color: var(--gold);
-  font-size: 14px;
-}
-
-.letter-card::before {
-  top: 17px;
-  left: 18px;
-}
-
-.letter-card::after {
-  bottom: 17px;
-  right: 18px;
-}
-
-.letter-top {
-  font-family: 'Parisienne', cursive;
-  font-size: 25px;
-  color: var(--wine);
-  text-align: center;
-  margin-bottom: 25px;
-}
-
-.note {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(21px, 4.7vw, 26px);
-  line-height: 1.85;
-  text-align: center;
-}
-
-.signature {
-  display: block;
-  margin-top: 35px;
-  font-family: 'Parisienne', cursive;
-  font-size: 33px;
-  color: var(--wine);
-}
-
-/* POEM */
-
-.poem-section {
-  background: var(--espresso);
-  color: var(--cream);
-  overflow: hidden;
-}
-
-.poem-section::before {
-  content: "AUTUMN";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(100px, 25vw, 260px);
-  letter-spacing: 8px;
-  color: rgba(255,255,255,.018);
-  white-space: nowrap;
-  pointer-events: none;
-}
-
-.poem-section .section-label {
-  color: var(--gold-light);
-}
-
-.poem-section .section-title {
-  color: var(--cream);
-}
-
-.poem-subtitle {
-  font-family: 'Parisienne', cursive;
-  font-size: 24px;
-  color: var(--gold-light);
-  text-align: center;
-  margin-bottom: 45px;
-}
-
-.poem {
-  position: relative;
-  max-width: 510px;
-  margin: auto;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(21px, 5vw, 28px);
-  line-height: 1.9;
-  text-align: center;
-  font-weight: 300;
-}
-
-.poem p {
-  margin-bottom: 32px;
-}
-
-.poem em {
-  color: var(--gold-light);
-  font-weight: 500;
-}
-
-.poem-end {
-  text-align: center;
-  font-family: 'Parisienne', cursive;
-  font-size: 30px;
-  line-height: 1.6;
-  color: var(--gold-light);
-  margin-top: 45px;
-}
-
-/* COUNTDOWN */
-
-.countdown-section {
-  background:
-    radial-gradient(ellipse at 50% 100%,
-      rgba(197,161,102,.12), transparent 65%),
-    #34241c;
-  color: var(--cream);
-  text-align: center;
-}
-
-.countdown-section .section-label {
-  color: var(--gold-light);
-}
-
-.countdown-section .section-title {
-  font-size: clamp(42px, 8vw, 64px);
-  margin-bottom: 18px;
-}
-
-.countdown-subtitle {
-  color: #d6c4ae;
-  font-size: 11px;
-  letter-spacing: .6px;
-  line-height: 1.9;
-}
-
-.countdown {
-  display: flex;
-  justify-content: center;
-  gap: clamp(9px, 3vw, 22px);
-  margin: 48px auto 30px;
-}
-
-.time-unit {
-  width: clamp(66px, 19vw, 105px);
-  padding: 19px 4px;
-  border: 1px solid rgba(229,205,156,.4);
-  background: rgba(255,255,255,.025);
-}
-
-.time-unit strong {
-  display: block;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(32px, 8vw, 48px);
-  font-weight: 300;
-  color: var(--gold-light);
-}
-
-.time-unit span {
-  display: block;
-  margin-top: 9px;
-  color: #d6c4ae;
-  font-size: 8px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.birthday-message {
-  max-width: 430px;
-  margin: 35px auto 0;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 23px;
-  font-style: italic;
-  line-height: 1.7;
-  color: var(--gold-light);
-}
-
-/* CLOSING */
-
-.closing {
-  background: var(--paper);
-  text-align: center;
-  padding: 115px 25px 85px;
-}
-
-.closing .section-title {
-  color: var(--brown);
-}
-
-.closing-message {
-  max-width: 560px;
-  margin: auto;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(25px, 5.5vw, 36px);
-  line-height: 1.7;
-  font-weight: 300;
-}
-
-.closing-message em {
-  color: var(--wine);
-  font-weight: 500;
-}
-
-.closing-script {
-  margin-top: 40px;
-  font-family: 'Parisienne', cursive;
-  font-size: 35px;
-  color: var(--wine);
-}
-
-.footer {
-  padding: 27px 15px;
-  background: var(--espresso);
-  color: #c9b69a;
-  text-align: center;
-  font-size: 8px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-
-.footer span {
-  display: block;
-  margin-top: 10px;
-  color: var(--gold-light);
-  font-size: 15px;
-}
-
-/* REVEAL ANIMATION */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (max-width: 480px) {
-  section {
-    padding: 85px 21px;
-  }
-
-  .hero h1 {
-    letter-spacing: -2px;
-  }
-
-  .letter-card {
-    padding: 38px 25px;
-  }
-
-  .time-unit {
-    padding: 16px 2px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
-  }
-
-  .reveal {
-    opacity: 1;
-    transform: none;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#211711">
+  <meta name="description" content="A little piece of my heart, made for my Songbird.">
+  <title>For My Songbird ♡</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f7efe3;
+      --paper: #fffaf2;
+      --gold: #c39a59;
+      --gold-light: #e7c993;
+      --wine: #672f35;
+      --espresso: #211711;
+      --brown: #49342a;
+      --muted: #897568;
+      --line: rgba(129, 91, 57, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 30px;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--espresso);
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::selection {
+      background: var(--gold-light);
+      color: var(--espresso);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      line-height: 1.8;
+      text-transform: uppercase;
+    }
+
+    .script {
+      font-family: "Parisienne", cursive;
+      font-weight: 400;
+    }
+
+    .section-wrap {
+      width: min(100% - 40px, 820px);
+      margin: 0 auto;
+    }
+
+    /* Floating golden particles */
+
+    #particles {
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      top: -15px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold-light);
+      opacity: 0;
+      animation: drift linear infinite;
+    }
+
+    @keyframes drift {
+      0% {
+        transform: translate3d(0, -5vh, 0) rotate(0deg);
+        opacity: 0;
+      }
+      12% {
+        opacity: 0.6;
+      }
+      85% {
+        opacity: 0.35;
+      }
+      100% {
+        transform: translate3d(35px, 110vh, 0) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Music player */
+
+    .music-player {
+      position: fixed;
+      z-index: 20;
+      right: 17px;
+      bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 10px 15px 10px 10px;
+      border: 1px solid rgba(231, 201, 147, 0.35);
+      border-radius: 50px;
+      background: rgba(33, 23, 17, 0.94);
+      color: var(--cream);
+      box-shadow: 0 8px 30px rgba(25, 14, 8, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .music-toggle {
+      width: 39px;
+      height: 39px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(231, 201, 147, 0.55);
+      border-radius: 50%;
+      background: linear-gradient(145deg, #d8b77c, #a87b40);
+      color: #24180f;
+      cursor: pointer;
+      transition: transform 0.25s ease;
+    }
+
+    .music-toggle:active {
+      transform: scale(0.92);
+    }
+
+    .music-toggle svg {
+      width: 17px;
+      height: 17px;
+      fill: currentColor;
+    }
+
+    .music-label {
+      min-width: 100px;
+    }
+
+    .music-title {
+      display: block;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .music-status {
+      display: block;
+      margin-top: 1px;
+      color: #c7ad91;
+      font-size: 9px;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    .music-bars {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 19px;
+      margin-left: 2px;
+    }
+
+    .music-bars span {
+      width: 2px;
+      height: 5px;
+      border-radius: 4px;
+      background: var(--gold-light);
+    }
+
+    .music-player.playing .music-bars span {
+      animation: equalize 0.8s ease-in-out infinite alternate;
+    }
+
+    .music-bars span:nth-child(2) { animation-delay: 0.2s; }
+    .music-bars span:nth-child(3) { animation-delay: 0.4s; }
+    .music-bars span:nth-child(4) { animation-delay: 0.1s; }
+
+    @keyframes equalize {
+      from { height: 4px; }
+      to { height: 17px; }
+    }
+
+    /* Hero */
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 85px 24px 80px;
+      overflow: hidden;
+      isolation: isolate;
+      color: var(--cream);
+      text-align: center;
+      background:
+        linear-gradient(180deg, rgba(24, 16, 12, 0.38), rgba(24, 16, 12, 0.45) 48%, #211711 100%),
+        linear-gradient(90deg, rgba(28, 17, 12, 0.6), rgba(28, 17, 12, 0.05), rgba(28, 17, 12, 0.6)),
+        url("https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=2200&q=85") center 52% / cover;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(231, 201, 147, 0.25);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: rgba(197, 151, 81, 0.12);
+      filter: blur(75px);
+      z-index: -1;
+    }
+
+    .hero-inner {
+      width: min(100%, 760px);
+      position: relative;
+      z-index: 1;
+      animation: arrive 1.2s ease both;
+    }
+
+    @keyframes arrive {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+      color: #e5c99d;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .hero-date::before,
+    .hero-date::after {
+      content: "";
+      width: 27px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero h1 {
+      margin: 27px 0 17px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(62px, 12vw, 112px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -2px;
+    }
+
+    .hero h1 em {
+      display: block;
+      color: var(--gold-light);
+      font-weight: 400;
+    }
+
+    .hero-description {
+      max-width: 390px;
+      margin: 25px auto 32px;
+      color: rgba(247, 239, 227, 0.83);
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 2;
+    }
+
+    .gold-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 49px;
+      padding: 0 25px;
+      border: 1px solid var(--gold-light);
+      background: linear-gradient(135deg, #e2c18b, #b88c50);
+      color: #261910;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .gold-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+    }
+
+    .hero-signature {
+      margin-top: 45px;
+      color: #e5c99d;
+      font-size: 27px;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(247, 239, 227, 0.65);
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .scroll-cue span {
+      display: block;
+      margin-top: 8px;
+      font-size: 16px;
+      text-align: center;
+      animation: bob 1.6s ease-in-out infinite;
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+    }
+
+    /* Letter */
+
+    .letter-section {
+      position: relative;
+      padding: 110px 0 105px;
+      background:
+        radial-gradient(ellipse at top, rgba(255, 255, 255, 0.7), transparent 60%),
+        var(--cream);
+    }
+
+    .section-heading {
+      margin-bottom: 38px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      margin-top: 13px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(39px, 7vw, 59px);
+      font-weight: 400;
+      line-height: 1.08;
+    }
+
+    .section-heading h2 em {
+      color: var(--wine);
+      font-weight: 400;
+    }
+
+    .letter-card {
+      position: relative;
+      width: min(100%, 630px);
+      margin: 0 auto;
+      padding: clamp(28px, 6vw, 57px);
+      border: 1px solid rgba(171, 131, 78, 0.28);
+      background: var(--paper);
+      box-shadow: 0 22px 60px rgba(84, 52, 29, 0.07);
+    }
+
+    .letter-card::before {
+      content: "♡";
+      position: absolute;
+      top: 17px;
+      right: 21px;
+      color: rgba(195, 154, 89, 0.55);
+      font-size: 24px;
+    }
+
+    .letter-card::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(171, 131, 78, 0.12);
+      pointer-events: none;
+    }
+
+    .letter-salutation {
+      margin-bottom: 22px;
+      color: var(--wine);
+      font-size: 34px;
+    }
+
+    .letter-card p:not(.letter-salutation) {
+      margin-bottom: 17px;
+      color: var(--brown);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 21px;
+      line-height: 1.85;
+    }
+
+    .letter-signoff {
+      margin-top: 29px;
+      color: var(--wine);
+      font-size: 31px;
+    }
+
+    .letter-signature-name {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+    }
+
+    /* Poem */
+
+    .poem-section {
+      position: relative;
+      padding: 105px 20px 115px;
+      overflow: hidden;
+      background: var(--espresso);
+      color: var(--cream);
+      text-align: center;
+    }
+
+    .poem-section::before,
+    .poem-section::after {
+      content: "✧";
+      position: absolute;
+      color: rgba(195, 154, 89, 0.15);
+      font-size: 220px;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .poem-section::before {
+      top: 10px;
+      left: -45px;
+    }
+
+    .poem-section::after {
+      right: -45px;
+      bottom: 10px;
+    }
+
+    .poem-section .eyebrow {
+      color: var(--gold-light);
+    }
+
+    .poem-section h2 {
+      margin: 17px 0 15px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(45px, 8vw, 72px);
+      font-weight: 400;
+    }
+
+    .poem-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      margin: 25px 0 35px;
+      color: var(--gold-light);
+    }
+
+    .poem-divider::before,
+    .poem-divider::after {
+      content: "";
+      width: 48px;
+      height: 1px;
+      background: rgba(231, 201, 147, 0.4);
+    }
+
+    .poem {
+      position: relative;
+      z-index: 1;
+      max-width: 580px;
+      margin: 0 auto;
+      color: rgba(247, 239, 227, 0.88);
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(19px, 3.2vw, 24px);
+      font-weight: 400;
+      line-height: 1.9;
+    }
+
+    .poem p + p {
+      margin-top: 26px;
+    }
+
+    .poem-ending {
+      margin-top: 36px;
+      color: var(--gold-light);
+      font-size: 28px;
+    }
+
+    /* Countdown */
+
+    .countdown-section {
+      padding: 100px 20px 105px;
+      background: #eee1cf;
+      text-align: center;
+    }
+
+    .countdown-section h2 {
+      margin: 13px 0 13px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(43px, 8vw, 65px);
+      font-weight: 400;
+    }
+
+    .countdown-section h2 em {
+      color: var(--wine);
+      font-weight: 400;
+    }
+
+    .countdown-intro {
+      max-width: 430px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: clamp(12px, 4vw, 37px);
+      margin: 42px 0 30px;
+    }
+
+    .time-unit {
+      min-width: 58px;
+    }
+
+    .time-number {
+      display: block;
+      color: var(--wine);
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(40px, 8vw, 62px);
+      font-weight: 500;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .time-label {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .countdown-note {
+      color: var(--brown);
+      font-family: "Parisienne", cursive;
+      font-size: 29px;
+    }
+
+    /* Birthday celebration: appears only on 28 October */
+
+    .birthday-celebration {
+      display: none;
+      position: relative;
+      min-height: 85svh;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 24px;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 30%, rgba(195, 154, 89, 0.2), transparent 60%),
+        var(--espresso);
+      color: var(--cream);
+      text-align: center;
+    }
+
+    .birthday-celebration.visible {
+      display: flex;
+    }
+
+    .birthday-inner {
+      position: relative;
+      z-index: 2;
+      width: min(100%, 690px);
+      animation: arrive 1.1s ease both;
+    }
+
+    .birthday-crown {
+      display: block;
+      margin-bottom: 23px;
+      color: var(--gold-light);
+      font-size: 32px;
+    }
+
+    .birthday-celebration h2 {
+      margin: 20px 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(55px, 12vw, 95px);
+      font-weight: 400;
+      line-height: 0.98;
+    }
+
+    .birthday-celebration h2 em {
+      display: block;
+      margin-top: 12px;
+      color: var(--gold-light);
+      font-weight: 400;
+    }
+
+    .birthday-message {
+      max-width: 540px;
+      margin: 28px auto;
+      color: rgba(247, 239, 227, 0.86);
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(20px, 3.5vw, 25px);
+      line-height: 1.9;
+    }
+
+    .birthday-signature {
+      margin-top: 28px;
+      color: var(--gold-light);
+      font-size: 34px;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      top: -20px;
+      z-index: 1;
+      width: 8px;
+      height: 14px;
+      opacity: 0.9;
+      animation: confetti-fall linear forwards;
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(-5vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(780deg);
+        opacity: 0.1;
+      }
+    }
+
+    /* Closing */
+
+    .closing-section {
+      padding: 105px 22px 90px;
+      background: var(--paper);
+      text-align: center;
+    }
+
+    .closing-ornament {
+      margin-bottom: 22px;
+      color: var(--gold);
+      font-size: 25px;
+    }
+
+    .closing-section h2 {
+      margin: 17px 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(43px, 8vw, 70px);
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    .closing-section h2 em {
+      display: block;
+      color: var(--wine);
+      font-weight: 400;
+    }
+
+    .closing-copy {
+      max-width: 440px;
+      margin: 25px auto 0;
+      color: var(--muted);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 21px;
+      line-height: 1.85;
+    }
+
+    .closing-script {
+      margin-top: 35px;
+      color: var(--wine);
+      font-size: 37px;
+    }
+
+    .closing-heart {
+      display: inline-block;
+      margin-top: 25px;
+      color: var(--gold);
+      font-size: 23px;
+      animation: heartbeat 2s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      10% { transform: scale(1.15); }
+      20% { transform: scale(1); }
+      30% { transform: scale(1.12); }
+      40% { transform: scale(1); }
+    }
+
+    /* Footer */
+
+    footer {
+      padding: 25px 20px 30px;
+      background: var(--paper);
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 9px;
+      letter-spacing: 2px;
+      line-height: 2;
+      text-transform: uppercase;
+    }
+
+    footer .footer-signature {
+      margin-top: 6px;
+      color: var(--wine);
+      font-family: "Parisienne", cursive;
+      font-size: 23px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    /* Scroll reveal */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 75px 24px 85px;
+        background-position: 55% center;
+      }
+
+      .hero::before {
+        inset: 11px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .hero-description {
+        max-width: 310px;
+        font-size: 12px;
+      }
+
+      .letter-section,
+      .poem-section,
+      .countdown-section,
+      .closing-section {
+        padding-top: 80px;
+        padding-bottom: 82px;
+      }
+
+      .letter-card p:not(.letter-salutation) {
+        font-size: 19px;
+      }
+
+      .countdown {
+        gap: 13px;
+      }
+
+      .time-unit {
+        min-width: 48px;
+      }
+
+      .time-label {
+        font-size: 8px;
+        letter-spacing: 1px;
+      }
+
+      .music-player {
+        right: 12px;
+        bottom: 12px;
+        gap: 8px;
+        padding: 8px 12px 8px 8px;
+      }
+
+      .music-toggle {
+        width: 36px;
+        height: 36px;
+      }
+
+      .music-title {
+        font-size: 14px;
+      }
+
+      .music-label {
+        min-width: 92px;
+      }
+
+      .music-status {
+        font-size: 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div id="particles" aria-hidden="true"></div>
 
-<div class="grain"></div>
-<div class="leaves" id="leaves" aria-hidden="true"></div>
+  <!-- Floating music player. Music starts only when she presses play. -->
+  <div class="music-player" id="music-player">
+    <button
+      class="music-toggle"
+      id="music-toggle"
+      type="button"
+      aria-label="Play music"
+      aria-pressed="false"
+    >
+      <svg id="play-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M8 5.5v13l11-6.5z"></path>
+      </svg>
+      <svg id="pause-icon" viewBox="0 0 24 24" aria-hidden="true" style="display:none">
+        <path d="M6 5h4v14H6zM14 5h4v14h-4z"></path>
+      </svg>
+    </button>
 
-<!-- OPENING -->
+    <div class="music-label">
+      <span class="music-title">Our song</span>
+      <span class="music-status" id="music-status">Tap to listen</span>
+    </div>
 
-<header class="hero">
-  <div class="hero-content">
-    <p class="eyebrow">A little before your day · 28 October</p>
+    <div class="music-bars" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </div>
 
-    <h1>
-      For my
-      <span>Songbird.</span>
-    </h1>
+  <audio id="birthday-song" preload="none" loop>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
 
-    <div class="hero-rule"></div>
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div class="hero-date">A little before your day · 28 October</div>
 
-    <p class="hero-description">
-      Some people arrive like a season--
-      quietly, beautifully,
-      leaving warmth in places
-      time cannot reach.
-    </p>
+      <h1>
+        For my
+        <em>Songbird</em>
+      </h1>
 
-    <a href="#letter" class="button">
-      Enter our little world <span>♡</span>
+      <p class="hero-description">
+        Some people make the world feel softer simply by being in it.
+        This little corner of the world is for you.
+      </p>
+
+      <a class="gold-button" href="#letter">
+        A little something for you <span aria-hidden="true">♡</span>
+      </a>
+
+      <p class="hero-signature script">With love, Kwabby.</p>
+    </div>
+
+    <a class="scroll-cue" href="#letter">
+      Keep wandering
+      <span aria-hidden="true">⌄</span>
     </a>
-  </div>
+  </header>
 
-  <div class="hero-bottom">
-    With love, Kwabby.
-    <span>⌄</span>
-  </div>
-</header>
+  <main>
+    <!-- LETTER -->
+    <section class="letter-section" id="letter">
+      <div class="section-wrap">
+        <div class="section-heading reveal">
+          <p class="eyebrow">A page from my heart</p>
+          <h2>Before your day <em>arrives</em></h2>
+        </div>
 
-<!-- LETTER -->
+        <article class="letter-card reveal">
+          <p class="letter-salutation script">My dearest Songbird,</p>
 
-<section class="note-section" id="letter">
-  <div class="section-inner reveal">
-    <p class="section-label">A letter, just for you</p>
+          <p>
+            Before the world gets to celebrate you, I wanted to leave
+            something here for you. Something quiet. Something warm.
+            A little piece of my heart, waiting for you whenever you
+            find your way to this page.
+          </p>
 
-    <h2 class="section-title">
-      Before your day arrives
-    </h2>
+          <p>
+            There are feelings that are difficult to fit into ordinary
+            words. Sometimes, all I can do is try to gather them gently
+            and offer them to you, hoping you can feel the love behind
+            every line.
+          </p>
 
-    <div class="ornament">✦</div>
+          <p>
+            As your special day draws closer, I hope you remember how
+            precious you are. Not just because another year is beginning,
+            but because of the person you are in every ordinary moment.
+          </p>
 
-    <div class="letter-card">
-      <div class="letter-top">My dearest Songbird,</div>
+          <p>
+            May life continue to meet you with kindness. May your heart
+            find reasons to smile, even on the days that ask too much
+            of you. And may you never have to wonder whether you matter
+            to someone.
+          </p>
 
-      <div class="note">
-        Your birthday hasn't arrived yet, but some
-        things are worth celebrating before their time.
+          <p>
+            You do. More than these words could ever properly explain.
+          </p>
 
-        <br><br>
-
-        So, consider this a little piece of my heart,
-        offered in advance, for someone whose presence
-        makes the passing of time feel a little more beautiful.
-
-        <br><br>
-
-        For you, my love. ❤️
-
-        <span class="signature">With love, always.</span>
+          <div class="letter-signoff script">Always yours,</div>
+          <p class="letter-signature-name">YOUR WOLF ♡</p>
+        </article>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- POEM -->
+    <!-- POEM -->
+    <section class="poem-section" id="poem">
+      <div class="reveal">
+        <p class="eyebrow">For the girl who feels like a season</p>
+        <h2>Autumn's Lore</h2>
 
-<section class="poem-section" id="poem">
-  <div class="section-inner reveal">
-    <p class="section-label">A little piece of my heart</p>
+        <div class="poem-divider" aria-hidden="true">✧</div>
 
-    <h2 class="section-title">Autumn's Lore</h2>
+        <div class="poem">
+          <p>
+            When autumn lays her gold upon the trees,<br>
+            And whispers wander softly with the breeze,<br>
+            I think of you, of warmth that will not fade,<br>
+            Of gentle light that even time has made.
+          </p>
 
-    <p class="poem-subtitle">For the one who feels like autumn.</p>
+          <p>
+            If every leaf must fall and seasons part,<br>
+            Let yours find shelter somewhere in my heart.<br>
+            And should the years turn silver as they flow,<br>
+            There is a love I hope you'll always know.
+          </p>
 
-    <div class="ornament">✦</div>
+          <p>
+            For beauty lives in more than eyes can see,<br>
+            In little things, in who you choose to be.<br>
+            And if the world grows cold, as worlds sometimes do,<br>
+            I hope there'll always be warmth here for you.
+          </p>
 
-    <div class="poem">
-      <p>
-        And to think you're simply a memory,<br>
-        I dissent,<br>
-        for you are <em>autumn's lore;</em><br>
-        the season that visits me<br>
-        when plains turn gold,<br>
-        and the sun's rays glaze<br>
-        everything in warmth<br>
-        like honey,<br>
-        while the sweet scents of fruit<br>
-        rise from the trees.
-      </p>
+          <p>
+            So let the golden evening skies depart,<br>
+            The changing leaves, the seasons, and the art.<br>
+            Some things are worth the years that they pass through—
+            <br>
+            And if time must pass, let it pass with you.
+          </p>
+        </div>
 
-      <p>
-        Your presence reminds me<br>
-        of all that ages<br>
-        yet retains its golden glow,<br>
-        of things that fade with time<br>
-        but remain worth holding on to,<br>
-        fleeting, yet precious,<br>
-        until the final moment<br>
-        I can hold you.
-      </p>
-    </div>
-
-    <div class="ornament">♡</div>
-
-    <p class="poem-end">
-      And if time must pass,<br>
-      let it pass with you.
-    </p>
-  </div>
-</section>
-
-<!-- COUNTDOWN -->
-
-<section class="countdown-section" id="birthday">
-  <div class="section-inner reveal">
-    <p class="section-label">A day worth celebrating</p>
-
-    <h2 class="section-title" id="countdown-heading">
-      Almost your day.
-    </h2>
-
-    <p class="countdown-subtitle" id="countdown-subtitle">
-      28 October 2026<br>
-      Until the world celebrates my favourite songbird.
-    </p>
-
-    <div class="ornament">✦</div>
-
-    <div class="countdown" id="countdown">
-      <div class="time-unit">
-        <strong id="days">00</strong>
-        <span>Days</span>
+        <p class="poem-ending script">For my Songbird, always.</p>
       </div>
+    </section>
 
-      <div class="time-unit">
-        <strong id="hours">00</strong>
-        <span>Hours</span>
+    <!-- COUNTDOWN -->
+    <section class="countdown-section" id="countdown-section">
+      <div class="reveal">
+        <p class="eyebrow">The days are drawing near</p>
+
+        <h2>Almost <em>your day.</em></h2>
+
+        <p class="countdown-intro" id="countdown-intro">
+          The world is making its way toward the day someone wonderful
+          came into it. Until then, here's a little reminder that your
+          day is on its way.
+        </p>
+
+        <div class="countdown" id="countdown" aria-label="Birthday countdown">
+          <div class="time-unit">
+            <span class="time-number" id="days">00</span>
+            <span class="time-label">Days</span>
+          </div>
+
+          <div class="time-unit">
+            <span class="time-number" id="hours">00</span>
+            <span class="time-label">Hours</span>
+          </div>
+
+          <div class="time-unit">
+            <span class="time-number" id="minutes">00</span>
+            <span class="time-label">Minutes</span>
+          </div>
+
+          <div class="time-unit">
+            <span class="time-number" id="seconds">00</span>
+            <span class="time-label">Seconds</span>
+          </div>
+        </div>
+
+        <p class="countdown-note script" id="countdown-note">
+          Something beautiful is worth waiting for.
+        </p>
       </div>
+    </section>
 
-      <div class="time-unit">
-        <strong id="minutes">00</strong>
-        <span>Minutes</span>
+    <!-- THIS SECTION APPEARS ON 28 OCTOBER, GHANA TIME -->
+    <section class="birthday-celebration" id="birthday-celebration">
+      <div class="birthday-inner">
+        <span class="birthday-crown" aria-hidden="true">✧ ♡ ✧</span>
+
+        <p class="eyebrow">Today is all about you</p>
+
+        <h2>
+          Happy Birthday,
+          <em>my Songbird.</em>
+        </h2>
+
+        <div class="poem-divider" aria-hidden="true">♡</div>
+
+        <p class="birthday-message">
+          Today, the world gets to celebrate the beautiful person you are.
+          May this new chapter bring you gentleness, joy, answered prayers,
+          and a thousand reasons to smile. May the dreams you carry find
+          their way into your hands, and may life remind you, again and
+          again, that you deserve good things.
+          <br><br>
+          You deserve to feel as loved as you make others feel.
+          Never forget how special you are to me.
+        </p>
+
+        <p class="birthday-signature script">
+          With all my love, always. ♡
+        </p>
       </div>
+    </section>
 
-      <div class="time-unit">
-        <strong id="seconds">00</strong>
-        <span>Seconds</span>
+    <!-- CLOSING -->
+    <section class="closing-section" id="closing">
+      <div class="section-wrap reveal">
+        <div class="closing-ornament" aria-hidden="true">✧</div>
+
+        <p class="eyebrow">One last little thing</p>
+
+        <h2>
+          If you ever wonder
+          <em>why you are so loved.</em>
+        </h2>
+
+        <p class="closing-copy">
+          Come back to this little corner. Let these words remind you
+          that somewhere in this wide and sometimes overwhelming world,
+          there is a heart that holds you close.
+          <br><br>
+          And no matter how many birthdays come and go, I hope you never
+          outgrow the feeling of being cherished.
+        </p>
+
+        <p class="closing-script script">Happy almost-birthday, my Songbird.</p>
+
+        <span class="closing-heart" aria-label="Love">♡</span>
       </div>
-    </div>
+    </section>
+  </main>
 
-    <p class="birthday-message" id="birthday-message">
-      Until then, let this little corner of the world
-      remind you that you are loved.
-    </p>
-  </div>
-</section>
+  <footer>
+    <p>A little before your day</p>
+    <p class="footer-signature">Made with love by your Wolf ♡</p>
+  </footer>
 
-<!-- THE LAST PAGE -->
+  <script>
+    // The birthday begins at midnight in Ghana (UTC).
+    const birthdayTime = new Date("2026-10-28T00:00:00Z").getTime();
 
-<section class="closing">
-  <div class="section-inner reveal">
-    <p class="section-label">Before you go</p>
+    const countdownSection = document.getElementById("countdown-section");
+    const countdown = document.getElementById("countdown");
+    const countdownIntro = document.getElementById("countdown-intro");
+    const countdownNote = document.getElementById("countdown-note");
+    const birthdayCelebration = document.getElementById("birthday-celebration");
 
-    <h2 class="section-title">
-      If you ever wonder...
-    </h2>
+    let birthdayModeStarted = false;
 
-    <div class="ornament">✦</div>
+    function launchConfetti() {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+      }
 
-    <div class="closing-message">
-      If I could give you one thing,
-      it would be the ability to see yourself
-      through my eyes.
+      const section = birthdayCelebration;
+      const pieces = 95;
+      const colors = ["#e7c993", "#c39a59", "#f7efe3", "#a85c50", "#d8b77c"];
 
-      <br><br>
+      for (let i = 0; i < pieces; i++) {
+        const piece = document.createElement("span");
+        piece.className = "confetti-piece";
+        piece.style.left = Math.random() * 100 + "%";
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDuration = (4 + Math.random() * 5) + "s";
+        piece.style.animationDelay = (Math.random() * 3) + "s";
+        piece.style.width = (4 + Math.random() * 5) + "px";
+        piece.style.height = (8 + Math.random() * 9) + "px";
+        section.appendChild(piece);
 
-      Perhaps then, you'd understand
-      <em>why you are so loved.</em>
-    </div>
+        window.setTimeout(() => piece.remove(), 13000);
+      }
+    }
 
-    <div class="ornament">♡</div>
+    function startBirthdayCelebration() {
+      if (birthdayModeStarted) return;
+      birthdayModeStarted = true;
 
-    <p class="closing-script">
-      Happy almost-birthday, my Songbird.
-    </p>
-  </div>
-</section>
+      countdown.style.display = "none";
+      countdownIntro.textContent =
+        "Today is your day, my Songbird. May this new chapter be as beautiful as the heart you carry.";
+      countdownNote.textContent = "Today, we celebrate you. ♡";
+      birthdayCelebration.classList.add("visible");
 
-<footer class="footer">
-  A little before your day
-  <span>Made with love by your Wolf ♡</span>
-</footer>
+      launchConfetti();
+    }
 
-<script>
-/* FALLING GOLDEN PARTICLES */
+    function updateCountdown() {
+      const now = Date.now();
+      const difference = birthdayTime - now;
 
-const leafContainer = document.getElementById('leaves');
-const symbols = ['✧', '✦', '❧', '·'];
+      if (difference <= 0) {
+        startBirthdayCelebration();
+        return;
+      }
 
-for (let i = 0; i < 17; i++) {
-  const leaf = document.createElement('span');
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((difference / (1000 * 60)) % 60);
+      const seconds = Math.floor((difference / 1000) % 60);
 
-  leaf.className = 'leaf';
-  leaf.textContent = symbols[
-    Math.floor(Math.random() * symbols.length)
-  ];
+      document.getElementById("days").textContent = String(days).padStart(2, "0");
+      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    }
 
-  leaf.style.left = Math.random() * 100 + '%';
-  leaf.style.animationDuration = (13 + Math.random() * 16) + 's';
-  leaf.style.animationDelay = (Math.random() * 20) + 's';
-  leaf.style.fontSize = (10 + Math.random() * 13) + 'px';
+    updateCountdown();
+    window.setInterval(updateCountdown, 1000);
 
-  leafContainer.appendChild(leaf);
-}
+    // Floating autumn particles.
+    const particleContainer = document.getElementById("particles");
 
-/* SCROLL REVEALS */
+    for (let i = 0; i < 22; i++) {
+      const particle = document.createElement("span");
+      particle.className = "particle";
+      particle.style.left = Math.random() * 100 + "%";
+      particle.style.animationDuration = (10 + Math.random() * 17) + "s";
+      particle.style.animationDelay = (Math.random() * 18) + "s";
+      particle.style.width = (2 + Math.random() * 4) + "px";
+      particle.style.height = particle.style.width;
+      particleContainer.appendChild(particle);
+    }
 
-if ('IntersectionObserver' in window) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+    // Scroll reveal animations.
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      revealElements.forEach((element) => observer.observe(element));
+    } else {
+      revealElements.forEach((element) => element.classList.add("in-view"));
+    }
+
+    // Music player: starts only when the visitor taps the button.
+    const audio = document.getElementById("birthday-song");
+    const musicPlayer = document.getElementById("music-player");
+    const musicToggle = document.getElementById("music-toggle");
+    const musicStatus = document.getElementById("music-status");
+    const playIcon = document.getElementById("play-icon");
+    const pauseIcon = document.getElementById("pause-icon");
+
+    function setMusicPlaying(isPlaying) {
+      musicPlayer.classList.toggle("playing", isPlaying);
+      musicToggle.setAttribute("aria-pressed", String(isPlaying));
+      musicToggle.setAttribute("aria-label", isPlaying ? "Pause music" : "Play music");
+      playIcon.style.display = isPlaying ? "none" : "block";
+      pauseIcon.style.display = isPlaying ? "block" : "none";
+      musicStatus.textContent = isPlaying ? "Now playing" : "Tap to listen";
+    }
+
+    musicToggle.addEventListener("click", async () => {
+      if (audio.paused) {
+        musicStatus.textContent = "Loading song…";
+
+        try {
+          await audio.play();
+          setMusicPlaying(true);
+        } catch (error) {
+          setMusicPlaying(false);
+          musicStatus.textContent = "Check song.mp3";
+          console.error("The song could not be played:", error);
+        }
+      } else {
+        audio.pause();
+        setMusicPlaying(false);
       }
     });
-  }, { threshold: 0.12 });
 
-  document.querySelectorAll('.reveal').forEach(element => {
-    observer.observe(element);
-  });
-} else {
-  document.querySelectorAll('.reveal').forEach(element => {
-    element.classList.add('visible');
-  });
-}
+    audio.addEventListener("ended", () => setMusicPlaying(false));
 
-/* BIRTHDAY COUNTDOWN -- GHANA TIME */
+    audio.addEventListener("error", () => {
+      if (audio.currentSrc) {
+        musicStatus.textContent = "Check song.mp3";
+      }
+    });
 
-const birthday = new Date('2026-10-28T00:00:00Z').getTime();
-
-function updateCountdown() {
-  const now = Date.now();
-  const distance = birthday - now;
-
-  if (distance <= 0) {
-    document.getElementById('countdown-heading').textContent =
-      'Happy Birthday, Songbird!';
-
-    document.getElementById('countdown-subtitle').innerHTML =
-      'Today, the world celebrates someone wonderful.';
-
-    document.getElementById('countdown').style.display = 'none';
-
-    document.getElementById('birthday-message').textContent =
-      'May your new year of life be as warm, golden, and beautiful as the love you give. Today is yours, my love. ❤️';
-
-    return;
-  }
-
-  const days = Math.floor(distance / 86400000);
-  const hours = Math.floor((distance % 86400000) / 3600000);
-  const minutes = Math.floor((distance % 3600000) / 60000);
-  const seconds = Math.floor((distance % 60000) / 1000);
-
-  document.getElementById('days').textContent =
-    String(days).padStart(2, '0');
-
-  document.getElementById('hours').textContent =
-    String(hours).padStart(2, '0');
-
-  document.getElementById('minutes').textContent =
-    String(minutes).padStart(2, '0');
-
-  document.getElementById('seconds').textContent =
-    String(seconds).padStart(2, '0');
-}
-
-updateCountdown();
-setInterval(updateCountdown, 1000);
-</script>
-
+    // If the page is opened on or after the birthday, show the celebration.
+    if (Date.now() >= birthdayTime) {
+      startBirthdayCelebration();
+    }
+  </script>
 </body>
 </html>
