@@ -930,7 +930,9 @@
 
         <article class="letter-card reveal">
           <p class="letter-salutation script">My dearest Songbird,</p>
-
+<div class="mavis-photo-wrap">
+  <img src="mavis.JPG" alt="My beautiful Mavis" class="mavis-photo">
+</div>
   <div class="mavis-diagonal">
   <span>M</span>
   <span>A</span>
@@ -984,6 +986,32 @@
     0%, 100% { transform: scale(1); opacity: .7; }
     50% { transform: scale(1.25); opacity: 1; }
   }
+  .mavis-photo-wrap {
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 30px auto 24px;
+position: relative;
+}
+
+.mavis-photo {
+width: 190px;
+height: 230px;
+object-fit: cover;
+object-position: center;
+border-radius: 100px 100px 24px 24px;
+border: 2px solid #d6b56d;
+padding: 5px;
+background: linear-gradient(135deg, #f5df9b, #9d7634, #f5df9b);
+box-shadow: 0 0 22px rgba(214, 181, 109, 0.25);
+display: block;
+transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.mavis-photo:hover {
+transform: scale(1.03);
+box-shadow: 0 0 32px rgba(214, 181, 109, 0.45);
+}
 </style>
 
           <p>
