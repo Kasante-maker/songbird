@@ -931,17 +931,60 @@
         <article class="letter-card reveal">
           <p class="letter-salutation script">My dearest Songbird,</p>
 
-          <p>
-            M
-          </p>
-            A
-          <p>
-            V
-          </p>
-            I
-          <p>
-            S
-          </p>
+  <div class="mavis-diagonal">
+  <span>M</span>
+  <span>A</span>
+  <span>V</span>
+  <span>I</span>
+  <span>S</span>
+  <div class="mavis-heart">♥</div>
+</div>
+<style>
+  .mavis-diagonal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 30px auto;
+    padding: 10px 30px 20px 0;
+  }
+  .mavis-diagonal span {
+    display: block;
+    font-family: Georgia, serif;
+    font-size: clamp(32px, 8vw, 48px);
+    font-weight: normal;
+    line-height: 1.15;
+    letter-spacing: 5px;
+    color: #e8c982;
+    text-shadow: 0 0 12px rgba(232, 201, 130, 0.3);
+    animation: mavisGlow 3s ease-in-out infinite alternate;
+  }
+  .mavis-diagonal span:nth-child(1) { margin-left: 0; }
+  .mavis-diagonal span:nth-child(2) { margin-left: 24px; animation-delay: .2s; }
+  .mavis-diagonal span:nth-child(3) { margin-left: 48px; animation-delay: .4s; }
+  .mavis-diagonal span:nth-child(4) { margin-left: 72px; animation-delay: .6s; }
+  .mavis-diagonal span:nth-child(5) { margin-left: 96px; animation-delay: .8s; }
+  .mavis-heart {
+    position: absolute;
+    left: 145px;
+    bottom: 0;
+    color: #d9a6a6;
+    font-size: 20px;
+    animation: heartBeat 1.8s ease-in-out infinite;
+  }
+  @keyframes mavisGlow {
+    from {
+      text-shadow: 0 0 5px rgba(232, 201, 130, 0.2);
+    }
+    to {
+      text-shadow: 0 0 18px rgba(232, 201, 130, 0.65);
+    }
+  }
+  @keyframes heartBeat {
+    0%, 100% { transform: scale(1); opacity: .7; }
+    50% { transform: scale(1.25); opacity: 1; }
+  }
+</style>
 
           <p>
             There is nothing subtle about the way I am yearning for you right now.
